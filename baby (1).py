@@ -1,4 +1,22 @@
 # Baby Prep C - Functional Baby
+import random
+
+
+def introduce_baby(baby_name, baby_age, current_weight):
+    funny_things = [
+        "I like to zoom around the room like a tiny race car!",
+        "I think socks are the best toy in the whole world!",
+        "I love to splash and make a giant waterfall in the tub!",
+        "I pretend my blanket is a superhero cape!",
+        "I like to wobble like a penguin and then nap!"
+    ]
+
+    funny_thing = random.choice(funny_things)
+
+    print(f"\nHi! My name is {baby_name}.")
+    print(f"I am {baby_age} months old and I weigh {current_weight} oz.")
+    print(f"I am a tiny chaos goblin with a fluffy heart!*")
+    print(f"{baby_name} says: \"{funny_thing}\"\n")
 
 
 # Baby Poops: weight drops 5 oz
@@ -9,7 +27,7 @@ def poop(current_weight):
 
 
 # Baby Pees: weight drops 4 oz
-def pee(current_weight -=4)
+def pee(current_weight):
     current_weight -=4
     print("Baby peed. -4 oz")
     return current_weight
@@ -52,13 +70,13 @@ def display_status(baby_name, current_weight, mood, eat_count, drink_count):
     print("--- Status ---")
     print(f"Name:   {baby_name}")
     print(f"Weight: {current_weight} oz")
-    print(f"Mood:   {eat_count}")
+    print(f"Mood:   {mood}")
     print(f"Eats:   {eat_count}")
     print(f"Drinks: {drink_count}")
 
 
 #Ask for a starting weight; fall back to a default on bad input
-def get_started_weight():
+def get_starting_weight():
     default = 120
     raw = input(f"Starting weight in oz [{default}]: ").strip()
     if raw == "":
@@ -77,13 +95,21 @@ def get_started_weight():
 #Main 
 def main():
     baby_name = input("Baby name: ").strip() or "Baby"
+
+    age_input = input("Baby age in months: ").strip()
+    try:
+        baby_age = int(age_input)
+    except ValueError:
+        baby_age = 0
+
     starting_weight = get_starting_weight()
     current_weight = starting_weight
-    mooe = "calm"
+    mood = "calm"
     eat_count = 0 
     drink_count = 0
 
     print(f"\n{baby_name} is here at {starting_weight} oz!")
+    introduce_baby(baby_name, baby_age, current_weight)
     print(f"Actions: eat, drink, cry, sleep, status, home")
 
     while True:
